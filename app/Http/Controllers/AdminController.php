@@ -48,9 +48,7 @@ class AdminController extends Controller
 
     public function edit(User $user)
     {
-        if ($user->isSuperadmin()) {
-            abort(403, 'Unauthorized action.');
-        }
+
 
         return view('admin.edit', compact('user'));
     }
@@ -58,9 +56,7 @@ class AdminController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if ($user->isSuperadmin()) {
-            abort(403, 'Unauthorized action.');
-        }
+
 
         $request->validate([
             'name' => 'required|string|max:255',
