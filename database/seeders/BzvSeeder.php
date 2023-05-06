@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SuperadminSeeder extends Seeder
+class BzvSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class SuperadminSeeder extends Seeder
     {
         User::create([
             'name'=>'superadmin',
-            'email'=>'superadmin@mail.com',
-            'password'=> '12345678',
-            'is_admin'=>true,
+            'email'=>'superadmi@gmail.com',
+            'password'=> '112345678',
+
 
 
         ]);

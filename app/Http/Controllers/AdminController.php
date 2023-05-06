@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
@@ -24,51 +26,27 @@ class AdminController extends Controller
 
     public function create()
     {
+
         return view('admin.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
 
-        ]);
-
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-
-        ]);
-
-        return redirect()->route('admin.index')->with('success', 'User created successfully.');
+        User::query()->create($request->validated());
+        return redirect()->route('admin.index');
     }
 
     public function edit(User $user)
     {
-
-
-        return view('admin.edit', compact('user'));
+        return view('admin.edit',['user'=>$user]);
     }
 
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
 
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => "required|string|email|max:255|unique:users,email,{$user->id}",
-
-        ]);
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-
-        ]);
+        User::query()->where('id',$user->id)->update($request->validated());
 
         return redirect()->route('admin.index');
     }

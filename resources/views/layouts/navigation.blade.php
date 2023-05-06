@@ -15,9 +15,32 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Pocetna') }}
                     </x-nav-link>
+                    @if(auth()->user()->is_admin)
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Korisnici') }}
                     </x-nav-link>
+
+
+                    @else
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                            {{ __('Korisnici') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('friendship.friend-request')" :active="request()->routeIs('friendship.friend-request')">
+                            {{ __('Zahtjevi za prijateljstvo') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('friendship.index')" :active="request()->routeIs('friendship.index')">
+                            {{ __('Prijatelji') }}
+                        </x-nav-link>
+
+
+
+
+
+                    @endif
+
+
+
                 </div>
             </div>
 
