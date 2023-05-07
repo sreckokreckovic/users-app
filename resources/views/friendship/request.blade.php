@@ -30,7 +30,7 @@
                         <form action="{{ route('friendship.update', $request) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <button class="btn btn-primary" type="submit">Dodaj</button>
+                            <button class="btn btn-primary" type="submit">Prihvati</button>
                         </form>
                         <td>
                         <form action="{{ route('friendship.destroy', $request) }}" method="POST" class="d-inline">
